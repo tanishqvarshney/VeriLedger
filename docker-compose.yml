@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: veriledger-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/static:/app/static
+      - ./backend/uploads:/app/uploads
+      # Keep database file persisted on the host
+      - ./backend/veriledger.db:/app/veriledger.db
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: veriledger-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend

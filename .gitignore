@@ -1,0 +1,28 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+veriledger.db
+*.db
+backend/veriledger.db
+backend/static/ela_*
+backend/static/copymove_*
+backend/static/original_*
+backend/uploads/*
+static/ela_*
+static/copymove_*
+static/original_*
+uploads/*
+test_artifacts/*
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.eslintcache
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/

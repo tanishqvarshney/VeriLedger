@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Premium Dark-Mode Theme Design Tokens */
+:root {
+  --bg-base: #0B0D10;
+  --bg-surface: #12151C;
+  --bg-surface-elevated: #181C25;
+  --border-hairline: rgba(255, 255, 255, 0.04);
+  --border-hairline-bright: rgba(255, 255, 255, 0.08);
+  
+  --text-primary: #F5F5F7;
+  --text-secondary: #8E8E93;
+  --text-tertiary: #6E6E73;
+  
+  --accent-blue: #0A84FF;
+  --accent-emerald: #30D158;
+  --accent-amber: #FF9F0A;
+  --accent-rose: #FF453A;
+  
+  font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+  letter-spacing: -0.011em;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Image Scanner Animation (Restrained & High-Tech) */
+@keyframes scanner-slide {
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-scanner {
+  animation: scanner-slide 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Apple-style Activity Ring Animation */
+@keyframes draw-gauge {
+  from { stroke-dashoffset: 251.2; }
+}
+
+.animate-gauge {
+  animation: draw-gauge 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Custom shadows & glows */
+.shadow-neon-emerald {
+  box-shadow: 0 0 40px rgba(48, 209, 88, 0.08);
+}
+
+.shadow-neon-amber {
+  box-shadow: 0 0 40px rgba(255, 159, 10, 0.08);
+}
+
+.shadow-neon-rose {
+  box-shadow: 0 0 40px rgba(255, 69, 58, 0.08);
+}
+
+.shadow-neon-blue {
+  box-shadow: 0 0 40px rgba(10, 132, 255, 0.08);
+}
+
+/* Inner shadow overlay for premium media container */
+.inner-shadow-overlay {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Range input thumb styles override */
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: ew-resize;
+  border: none;
+}
