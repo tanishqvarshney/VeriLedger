@@ -40,6 +40,14 @@ def startup_event():
 # Serve static files for ELA and Copy-Move overlays
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
+@app.get("/")
+async def read_root():
+    return {
+        "status": "healthy",
+        "service": "VeriLedger Forensic Backend",
+        "endpoints": ["/analyze", "/ledger", "/ledger/verify", "/analyze-cross"]
+    }
+
 @app.post("/analyze")
 async def analyze_file(file: UploadFile = File(...)):
     """
@@ -137,19 +145,25 @@ def extract_text_from_document(file_path: str) -> str:
     # If text is empty, it could be a scanned document or image. Fallback to OCR.
     if not text.strip():
         # Render PDF pages to images for OCR or load image directly
-        if is_pdf:
-            doc = fitz.open(file_path)
-            for page in doc:
-                pix = page.get_pixmap(dpi=150)
-                img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-                text += pytesseract.image_to_string(img) + "\n"
-            doc.close()
-        else:
-            try:
+        try:
+            if is_pdf:
+                doc = fitz.open(file_path)
+                for page in doc:
+                    pix = page.get_pixmap(dpi=150)
+                    img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+                    text += pytesseract.image_to_string(img) + "\n"
+                doc.close()
+            else:
                 img = Image.open(file_path)
                 text = pytesseract.image_to_string(img)
-            except Exception as e:
-                print(f"OCR failed: {e}")
+        except (pytesseract.TesseractNotFoundError, FileNotFoundError):
+            raise ValueError(
+                "OCR engine (Tesseract) is not installed on the system. "
+                "Please install Tesseract (e.g., 'brew install tesseract' on macOS) "
+                "to reconcile scanned PDFs or image documents."
+            )
+        except Exception as e:
+            print(f"OCR failed: {e}")
                 
     return text
 
@@ -278,6 +292,8 @@ async def analyze_cross_documents(
             "status": "success" if not reconciliation_flags else "warning"
         }
         
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
         import traceback
         traceback.print_exc()

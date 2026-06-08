@@ -65,24 +65,26 @@ function App() {
   const singleInputRef = useRef(null);
   const payslipInputRef = useRef(null);
   const bankInputRef = useRef(null);
-  const consoleBottomRef = useRef(null);
-  const crossConsoleBottomRef = useRef(null);
+  const consoleContainerRef = useRef(null);      // scrollable box ref
+  const crossConsoleContainerRef = useRef(null); // scrollable box ref
 
   // Load Ledger
   useEffect(() => {
     fetchLedger();
   }, []);
 
-  // Scroll console to bottom
+  // Scroll only the console box to bottom — never the whole page
   useEffect(() => {
-    if (consoleBottomRef.current) {
-      consoleBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (consoleContainerRef.current) {
+      const el = consoleContainerRef.current;
+      el.scrollTop = el.scrollHeight;
     }
   }, [consoleLogs]);
 
   useEffect(() => {
-    if (crossConsoleBottomRef.current) {
-      crossConsoleBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (crossConsoleContainerRef.current) {
+      const el = crossConsoleContainerRef.current;
+      el.scrollTop = el.scrollHeight;
     }
   }, [crossConsoleLogs]);
 
@@ -524,7 +526,7 @@ function App() {
                   {singleLoading && <span className="flex h-1.5 w-1.5 rounded-full bg-[#0A84FF] animate-ping" />}
                 </div>
 
-                <div className="flex-1 overflow-y-auto font-mono text-[10px] text-[#8E8E93] space-y-3 p-4 bg-[#0B0D10]/80 rounded-xl border border-white/[0.04] shadow-inner max-h-[320px]">
+                <div ref={consoleContainerRef} className="flex-1 overflow-y-auto font-mono text-[10px] text-[#8E8E93] space-y-3 p-4 bg-[#0B0D10]/80 rounded-xl border border-white/[0.04] shadow-inner max-h-[320px]">
                   {consoleLogs.length > 0 ? (
                     consoleLogs.map((log, idx) => (
                       <div key={idx} className="flex items-start space-x-2 leading-relaxed">
@@ -539,7 +541,6 @@ function App() {
                       Console idle. Awaiting document ingestion...
                     </div>
                   )}
-                  <div ref={consoleBottomRef} />
                 </div>
               </div>
 
@@ -958,7 +959,7 @@ function App() {
                   <Terminal className="w-4 h-4 text-[#0A84FF]" />
                   <span className="text-xs font-bold text-[#8E8E93] uppercase tracking-wider">Live OCR Engine Logs</span>
                 </div>
-                <div className="flex-1 overflow-y-auto font-mono text-[10px] text-[#8E8E93] space-y-2.5 p-3.5 bg-[#0B0D10]/80 rounded-xl border border-white/[0.04] shadow-inner max-h-[220px]">
+                <div ref={crossConsoleContainerRef} className="flex-1 overflow-y-auto font-mono text-[10px] text-[#8E8E93] space-y-2.5 p-3.5 bg-[#0B0D10]/80 rounded-xl border border-white/[0.04] shadow-inner max-h-[220px]">
                   {crossConsoleLogs.length > 0 ? (
                     crossConsoleLogs.map((log, idx) => (
                       <div key={idx} className="flex items-start space-x-1.5 leading-relaxed">
@@ -971,7 +972,6 @@ function App() {
                       Console idle. Ingest files to audit.
                     </div>
                   )}
-                  <div ref={crossConsoleBottomRef} />
                 </div>
               </div>
 
