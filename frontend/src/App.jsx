@@ -1604,7 +1604,7 @@ function App() {
       <footer className="bg-[#12151C] border-t border-white/[0.04] py-6 mt-12">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-[10px] text-[#6E6E73] font-bold uppercase tracking-wider">
-            &copy; 2026 VeriLedger. Cryptographic Loan Forgery Layer.
+            &copy; 2026 VeriLedger. Cryptographic Loan Forgery Layer. Developed by Tanishq Varshney.
           </p>
           <div className="flex space-x-4">
             <span className="text-[10px] text-[#6E6E73] font-mono">FastAPI</span>
