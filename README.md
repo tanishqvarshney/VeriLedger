@@ -74,7 +74,8 @@ docker-compose up --build
 
 Once running:
 - **Frontend Dashboard**: Access at [http://localhost:3000](http://localhost:3000)
-- **FastAPI Backend Swagger Docs**: Access at [http://localhost:8000/docs](http://localhost:8000/docs)
+- **FastAPI Backend Swagger Docs (Local)**: Access at [http://localhost:8000/docs](http://localhost:8000/docs)
+- **FastAPI Backend Swagger Docs (Production)**: Access at [https://veriledger.onrender.com/docs](https://veriledger.onrender.com/docs)
 
 ---
 
