@@ -5,6 +5,7 @@ import fitz  # PyMuPDF
 from PIL import Image
 import pytesseract
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
@@ -125,6 +126,19 @@ async def audit_ledger():
         return verify_ledger(DB_PATH)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Verification failure: {str(e)}")
+
+@app.get("/ledger/download")
+async def download_ledger_db():
+    """
+    Allows downloading the raw SQLite ledger database file.
+    """
+    if os.path.exists(DB_PATH):
+        return FileResponse(
+            path=DB_PATH,
+            filename="veriledger.db",
+            media_type="application/x-sqlite3"
+        )
+    raise HTTPException(status_code=404, detail="Database file not found.")
 
 # --- PHASE 2: CROSS-DOCUMENT RECONCILIATION ---
 

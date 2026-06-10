@@ -437,3 +437,13 @@ def test_error_handling_encrypted_pdfs():
     finally:
         if os.path.exists(encrypted_path):
             os.remove(encrypted_path)
+
+def test_ledger_download():
+    """
+    Asserts that downloading the SQLite ledger database returns a 200 OK
+    and serves the database binary file correctly.
+    """
+    response = client.get("/ledger/download")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/x-sqlite3"
+    assert len(response.content) > 0
