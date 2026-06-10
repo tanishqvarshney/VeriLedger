@@ -9,11 +9,39 @@ It provides an automated forensic layer that runs image and structural checks on
 ## 🚀 Live Demo & Presentation Assets
 
 * **Live Demo (GitHub Pages)**: **[https://tanishqvarshney.github.io/VeriLedger/](https://tanishqvarshney.github.io/VeriLedger/)**
-  > [!NOTE]
-  > The GitHub Pages live site operates in a **hybrid client-side fallback mode**. If the backend server is unreachable, you can still fully test the document forensic engine, slider workspaces, and OCR reconciliation by uploading the pre-generated sample files (`clean_salary_slip.pdf` and `tampered_salary_slip.pdf`). Custom file audits require running the FastAPI backend locally or via Docker.
-* **Recorded Live Walkthrough Video**: [VeriLedger_Live_Walkthrough.mp4](VeriLedger_Live_Walkthrough.mp4) (50.1 MB browser walkthrough showing all tabs, ELA compression heatmaps, ORB clone matching, cross-doc reconciliation, and database chain audit)
-* **PowerPoint Pitch Deck**: [VeriLedger_Pitch_Deck.pptx](VeriLedger_Pitch_Deck.pptx) (11-slide presentation explaining prototype architecture, forensic math, database integrity, and fraud business cases)
-* **Interactive Snapshots Index**: See the step-by-step screenshots in the [real_snapshots/](real_snapshots/) and [snapshots/](snapshots/) folders.
+  *(Connects dynamically to your live FastAPI backend on Render at `https://veriledger.onrender.com`!)*
+
+### 🎬 Live App Walkthrough Video
+You can play the browser-automation walkthrough video directly below:
+
+<video src="VeriLedger_Live_Walkthrough.mp4" width="100%" controls></video>
+
+* **PowerPoint Pitch Deck**: [VeriLedger_Pitch_Deck.pptx](VeriLedger_Pitch_Deck.pptx) *(11-slide presentation explaining prototype architecture, forensic math, database integrity, and business cases)*
+
+---
+
+## 📸 Interactive Forensic Snapshots
+
+Here are key screens captured from the live application showing the forensic analysis and audit features:
+
+### 1. Document Forensics Workspace (Single Audit)
+Wipe slider workspace comparing original uploaded document against ELA compression error level heatmaps and copy-move duplicated elements:
+
+| 🟢 Clean Document (Trusted Verdict) | 🔴 Tampered Document (Forgery Highlight) |
+|:---:|:---:|
+| ![Clean Result](real_snapshots/04_clean_result.jpg) | ![Tampered Result](real_snapshots/09_tampered_result.jpg) |
+| **Error Level Analysis (ELA)** | **Copy-Move (ORB Clone Keypoints)** |
+| ![Clean ELA Heatmap](real_snapshots/05_clean_ela.jpg) | ![Tampered Clone Keypoints](real_snapshots/11_tampered_clone.jpg) |
+
+### 2. Cross-Document OCR Reconciliation (Phase 2)
+Side-by-side transaction value matching mapping anomalies between Payslips and Bank Statements:
+
+![Cross-Document Map](real_snapshots/17_cross_link_map.jpg)
+
+### 3. Cryptographic Ledger Chain Integrity
+Secure block chronological logs with automated hash chain verification (green intact validation status):
+
+![Ledger Integrity](real_snapshots/19_ledger_intact.jpg)
 
 ---
 
