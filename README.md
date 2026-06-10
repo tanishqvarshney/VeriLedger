@@ -6,6 +6,17 @@ It provides an automated forensic layer that runs image and structural checks on
 
 ---
 
+## 🚀 Live Demo & Presentation Assets
+
+* **Live Demo (GitHub Pages)**: **[https://tanishqvarshney.github.io/VeriLedger/](https://tanishqvarshney.github.io/VeriLedger/)**
+  > [!NOTE]
+  > The GitHub Pages live site operates in a **hybrid client-side fallback mode**. If the backend server is unreachable, you can still fully test the document forensic engine, slider workspaces, and OCR reconciliation by uploading the pre-generated sample files (`clean_salary_slip.pdf` and `tampered_salary_slip.pdf`). Custom file audits require running the FastAPI backend locally or via Docker.
+* **Recorded Live Walkthrough Video**: [VeriLedger_Live_Walkthrough.mp4](VeriLedger_Live_Walkthrough.mp4) (50.1 MB browser walkthrough showing all tabs, ELA compression heatmaps, ORB clone matching, cross-doc reconciliation, and database chain audit)
+* **PowerPoint Pitch Deck**: [VeriLedger_Pitch_Deck.pptx](VeriLedger_Pitch_Deck.pptx) (11-slide presentation explaining prototype architecture, forensic math, database integrity, and fraud business cases)
+* **Interactive Snapshots Index**: See the step-by-step screenshots in the [real_snapshots/](real_snapshots/) and [snapshots/](snapshots/) folders.
+
+---
+
 ## Features & Forensic Checks
 
 1. **Error Level Analysis (ELA)**: Rasterizes PDF pages, resaves them as JPEG at 90% quality, and computes the absolute pixel difference. Localized image splices, painted shapes, or edited text fields leave a high-contrast grid mismatch (glowing bright spots) on the ELA heatmap.
