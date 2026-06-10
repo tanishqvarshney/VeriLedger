@@ -29,7 +29,9 @@ import {
   RotateCcw
 } from 'lucide-react';
 
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:8000'
+  : 'https://veriledger-api.onrender.com'; // Replace this with your hosted backend URL once deployed on Render/Railway
 
 function App() {
   const [activeTab, setActiveTab] = useState('single'); // 'single' or 'cross'
