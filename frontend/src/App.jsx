@@ -676,6 +676,14 @@ function App() {
                 </div>
               ) : singleResult ? (
                 <div className="flex flex-col space-y-8">
+                  {singleResult.isOfflineSimulation && (
+                    <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 flex items-start space-x-3 text-amber-200">
+                      <AlertTriangle className="w-4.5 h-4.5 text-amber-400 mt-0.5 shrink-0" />
+                      <div className="text-xs leading-relaxed">
+                        <span className="font-bold">Offline Demo Mode:</span> FastAPI backend is unreachable. Running client-side simulation. To perform custom file forensics, run the backend server locally.
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Results Overview (Gauges and Bars) */}
                   <div className="bg-[#12151C] border border-white/[0.04] rounded-2xl p-8 shadow-xl grid grid-cols-1 md:grid-cols-12 gap-8 relative overflow-hidden">
@@ -1107,6 +1115,14 @@ function App() {
                 </div>
               ) : crossResult ? (
                 <div className="flex flex-col space-y-6">
+                  {crossResult.isOfflineSimulation && (
+                    <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 flex items-start space-x-3 text-amber-200">
+                      <AlertTriangle className="w-4.5 h-4.5 text-amber-400 mt-0.5 shrink-0" />
+                      <div className="text-xs leading-relaxed">
+                        <span className="font-bold">Offline Demo Mode:</span> FastAPI backend is unreachable. Running client-side simulation. To perform custom file OCR reconciliation, run the backend server locally.
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Score & Declarations overview */}
                   <div className="bg-[#12151C] border border-white/[0.04] rounded-2xl p-6 shadow-xl grid grid-cols-1 md:grid-cols-12 gap-6 relative overflow-hidden">
